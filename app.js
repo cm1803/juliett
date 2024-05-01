@@ -11,10 +11,27 @@ function convertToNATO(word) {
     return word.toUpperCase().split('').map(letter => nato[letter] || letter).join(' - ');
 }
 
+// Function to convert word to kebab case
+function convertToKebabCase(word) {
+    return word.toLowerCase().replace(/\s+/g, '-');
+}
+
+// Function to convert word to civilian format
+function convertToCivilian(word) {
+    return word.toLowerCase().replace(/\s+/g, ' ');
+}
+
 // Event listener for submit button
 $('#submitBtn').click(function () {
     const word = $('#inputWord').val();
-    const result = convertToNATO(word);
+    let result;
+    if ($('#kebabCaseToggle').prop('checked')) {
+        result = convertToKebabCase(word);
+    } else if ($('#civilianToggle').prop('checked')) {
+        result = convertToCivilian(word);
+    } else {
+        result = convertToNATO(word);
+    }
     $('#resultList').empty().append(`<li class="list-group-item">${result}</li>`).slideDown();
 });
 
