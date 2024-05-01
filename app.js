@@ -13,12 +13,18 @@ function convertToNATO(word) {
 
 // Function to convert word to kebab case
 function convertToKebabCase(word) {
-    return word.toLowerCase().replace(/\s+/g, '-');
+    return word.toLowerCase().split('').join('-');
 }
 
 // Function to convert word to civilian format
 function convertToCivilian(word) {
-    return word.toLowerCase().replace(/\s+/g, ' ');
+    const civilian = {
+        'a': 'Adam', 'b': 'Boy', 'c': 'Charlie', 'd': 'David', 'e': 'Edward', 'f': 'Frank', 'g': 'George',
+        'h': 'Henry', 'i': 'Ida', 'j': 'John', 'k': 'King', 'l': 'Lincoln', 'm': 'Mary', 'n': 'Nora',
+        'o': 'Ocean', 'p': 'Paul', 'q': 'Queen', 'r': 'Robert', 's': 'Sam', 't': 'Tom', 'u': 'Union',
+        'v': 'Victor', 'w': 'William', 'x': 'X-ray', 'y': 'Young', 'z': 'Zebra'
+    };
+    return word.toLowerCase().split('').map(letter => civilian[letter] || letter).join(' - ');
 }
 
 // Event listener for submit button
